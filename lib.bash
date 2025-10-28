@@ -32,14 +32,3 @@ join(){ local IFS="$1"; shift; echo "$*"; }
 
 #joinn() { for i; do echo "$i"; done ; return 0;}
 #uniqs() { sort|uniq|tr "\r\n" ' '|xargs echo -n ;}
-
-run() {
-  local action="$1"
-  shift
-  test -d .github/actions || die "no actions dir in .:\n$(ls .)"
-  test -d ".github/actions/$action" || die "no actions dir in:\n$(ls .github/actions)"
-  test -f ".github/actions/$action/action.sh" || die "no action file in .github/actions/$action:\n$(ls .github/actions/$action)"
-  source ".github/actions/$action/action.sh"
-  return $?
-}
-#run "$@"

@@ -1,14 +1,14 @@
-name: Repo parse
+name: Repository address parser helper
 inputs:
   url:
     description: Repository url
-    required: true
+    required: false
 outputs:
   url:
     description: Repository url (rebuilt from vars)
     value: ${{ steps.repo.outputs.url }}
   repo:
-    description: Repository
+    description: Repository name
     value: ${{ steps.repo.outputs.repo }}
   domain:
     description: Repository service domain name
@@ -22,15 +22,8 @@ outputs:
 runs:
   using: composite
   steps:
-#    - shell: bash
-#      run: |
-#          echo ${{github.workspace}} >> $GITHUB_PATH
-#          echo ${{github.workspace}}/.github/actions/repo-parse >> $GITHUB_PATH
     - name: Parse repository URL
       shell: bash
       id: repo
-      run: |
-          pwd
-          ls -la
-          echo $PATH
-          ${{github.action_path}}/action.sh "${{ inputs.url }}"
+      run: run.sh "${{ inputs.url }}"
+#      run: ${{github.action_path}}/action.sh "${{ inputs.url }}"
