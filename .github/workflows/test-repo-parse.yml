@@ -2,7 +2,7 @@
 env:
   name: 'repo-parse'
 
-#name: Test ${{ env.name }}
+name: Test ${{ env.name }}
 on:
   workflow_dispatch:
   push:
@@ -24,6 +24,6 @@ jobs:
         with:
           url: 'https://github.com/a/b'
       - run: |
-          test "${{ steps.a.outputs.url }}" = "${{ steps.a.outputs.scheme }}${{ steps.a.outputs.domain }}/${{ steps.a.outputs.repo }}"
+          test "${{ steps.a.outputs.url }}" = "${{ steps.a.outputs.scheme }}://${{ steps.a.outputs.domain }}/${{ steps.a.outputs.repo }}"
           test "${{ steps.a.outputs.url }}" = 'https://github.com/a/b'
           test "${{ steps.a.outputs.repo }}" = 'a/b'
