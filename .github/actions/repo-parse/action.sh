@@ -1,10 +1,8 @@
 #!/bin/bash
 
-set -e
+. lib.bash
 
-#. ../lib.sh
-source lib.bash
-
+echo "started action:\n   repo-parse $@"
 test -n "$1" || die "require repository url"
 
 defined GITHUB_OUTPUT && test -s $GITHUB_OUTPUT && truncate -s0 $GITHUB_OUTPUT
