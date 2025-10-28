@@ -33,4 +33,4 @@ runs:
           pwd
           ls -la
           echo $PATH
-          action.sh "${{ inputs.url }}"
+          ${{github.action_path}}/action.sh "${{ inputs.url }}"
