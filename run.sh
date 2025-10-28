@@ -1,5 +1,7 @@
 #!/bin/sh
 
+env
+
 run() {
   local action="$1"
   shift
