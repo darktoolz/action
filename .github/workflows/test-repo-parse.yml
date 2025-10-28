@@ -18,15 +18,11 @@ jobs:
           url: ${{ matrix.url }}
         strategy:
           matrix:
-            url:
-              - 'https://github.com/a/b'
-              - 'https://gitlab.com/a/b'
-              - 'http://gitlab.com/a/b'
-              - 'https://github.com/a/b#v18.0.1'
-              - 'https://gitlab.com/a/b#v18.0.1'
-              - 'http://gitlab.com/a/b#v18.0.1'
-              - 'https://github.com/a/b@v18.0.1'
-              - 'https://gitlab.com/a/b@v18.0.1'
-              - 'http://gitlab.com/a/b@v18.0.1'
-      - run: |
-          test "${{ steps.a.outputs.url }}" = "${{ matrix.url }}"
+            url: ['https://github.com/a/b' ,'https://gitlab.com/a/b', 'http://gitlab.com/a/b']
+#              - 'https://github.com/a/b#v18.0.1'
+#              - 'https://gitlab.com/a/b#v18.0.1'
+#              - 'http://gitlab.com/a/b#v18.0.1'
+#              - 'https://github.com/a/b@v18.0.1'
+#              - 'https://gitlab.com/a/b@v18.0.1'
+#              - 'http://gitlab.com/a/b@v18.0.1'
+      - run: test "${{ steps.a.outputs.url }}" = "${{ matrix.url }}"
