@@ -20,7 +20,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - id: a
-        uses: ./.github/actions/${{ env.name }}
+        uses: ./.github/actions/${{ env.name }}/action.yml
         with:
           url: 'https://github.com/a/b'
       - run: |
