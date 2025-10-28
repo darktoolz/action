@@ -10,19 +10,19 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - id: repo
-        uses: ./.github/actions/repo-parse
-        with:
-          url: ${{ matrix.url }}
-        strategy:
-          matrix:
-            url: ['https://github.com/a/b' ,'https://gitlab.com/a/b', 'http://gitlab.com/a/b']
+      strategy:
+        matrix:
+          url: ['https://github.com/a/b' ,'https://gitlab.com/a/b', 'http://gitlab.com/a/b']
 #              - 'https://github.com/a/b#v18.0.1'
 #              - 'https://gitlab.com/a/b#v18.0.1'
 #              - 'http://gitlab.com/a/b#v18.0.1'
 #              - 'https://github.com/a/b@v18.0.1'
 #              - 'https://gitlab.com/a/b@v18.0.1'
 #              - 'http://gitlab.com/a/b@v18.0.1'
-      - run: test "${{ steps.a.outputs.url }}" = "${{ matrix.url }}"
+    steps:
+      - uses: actions/checkout@v4
+      - id: repo
+        uses: ./.github/actions/repo-parse
+        with:
+          url: ${{ matrix.url }}
+      - run: test "${{ steps.repo.outputs.url }}" = "${{ matrix.url }}"
