@@ -26,5 +26,9 @@ runs:
       run: echo ${{github.workspace}} >> $GITHUB_PATH
     - name: Parse repository URL
       id: repo
-      run: action.sh "${{ inputs.url }}"
+      run: |
+          pwd
+          ls -la
+          echo $PATH
+          action.sh "${{ inputs.url }}"
       shell: bash
