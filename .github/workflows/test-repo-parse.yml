@@ -9,9 +9,10 @@ on:
     branches:
       - main
   paths:
-    - '.github/actions/${{ env.name }}*'
-    - '.github/workflows/test-${{ env.name }}*'
+    - '.github/actions/repo-parse/*'
+    - '.github/workflows/test-repo-parse.yml'
     - '.github/actions/lib.sh'
+    - 'lib.bash'
 
 jobs:
   test:
@@ -20,7 +21,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - id: a
-        uses: ./.github/actions/${{ env.name }}/action.yml
+        uses: ./.github/actions/repo-parse
         with:
           url: 'https://github.com/a/b'
       - run: |
