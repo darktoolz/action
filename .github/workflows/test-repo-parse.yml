@@ -8,7 +8,59 @@ on:
       - 'lib.bash'
 
 jobs:
-  test:
+  test-empty:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: empty
+        uses: ./.github/actions/repo-parse
+      - run: test "${{ steps.empty.outputs.url }}" = "https://github.com/${{ github.repository }}"
+
+  test-self:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: self-s
+        uses: ./.github/actions/repo-parse
+        with:
+          url: "https://github.com/${{ github.repository }}"
+      - run: test "${{ steps.self-s.outputs.url }}" = "https://github.com/${{ github.repository }}"
+
+      - id: self
+        uses: ./.github/actions/repo-parse
+        with:
+          url: "http://github.com/${{ github.repository }}"
+      - run: test "${{ steps.self.outputs.url }}" = "http://github.com/${{ github.repository }}"
+
+      - id: self2
+        uses: ./.github/actions/repo-parse
+        with:
+          url: "github.com/${{ github.repository }}"
+      - run: test "${{ steps.self2.outputs.url }}" = "https://github.com/${{ github.repository }}"
+
+  test-gl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: gl-s
+        uses: ./.github/actions/repo-parse
+        with:
+          url: "https://gitlab.com/${{ github.repository }}"
+      - run: test "${{ steps.gl-s.outputs.url }}" = "https://gitlab.com/${{ github.repository }}"
+
+      - id: gl
+        uses: ./.github/actions/repo-parse
+        with:
+          url: "http://gitlab.com/${{ github.repository }}"
+      - run: test "${{ steps.gl.outputs.url }}" = "http://gitlab.com/${{ github.repository }}"
+
+      - id: gl2
+        uses: ./.github/actions/repo-parse
+        with:
+          url: "gitlab.com/${{ github.repository }}"
+      - run: test "${{ steps.gl2.outputs.url }}" = "https://gitlab.com/${{ github.repository }}"
+
+  test-url:
     runs-on: ubuntu-latest
     strategy:
       matrix:
