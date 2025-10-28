@@ -22,9 +22,9 @@ outputs:
 runs:
   using: composite
   steps:
-		- shell: bash
-			run: echo ${{github.workspace}} >> $GITHUB_PATH
+    - shell: bash
+      run: echo ${{github.workspace}} >> $GITHUB_PATH
     - name: Parse repository URL
-			id: repo
+      id: repo
       run: action.sh "${{ inputs.url }}"
       shell: bash

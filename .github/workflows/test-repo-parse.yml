@@ -1,28 +1,28 @@
 name: Test ${{ env.name }}
 on:
-	workflow_dispatch:
-	push:
+  workflow_dispatch:
+  push:
     branches:
       - main
-		paths:
-			- '.github/actions/${{ env.name }}*'
-			- '.github/workflows/test-${{ env.name }}*'
-			- '.github/actions/lib.sh'
+  paths:
+    - '.github/actions/${{ env.name }}*'
+    - '.github/workflows/test-${{ env.name }}*'
+    - '.github/actions/lib.sh'
 
 env:
-	name: 'repo-parse'
+  name: 'repo-parse'
 
 jobs:
-	test:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-			- id: a
-				uses: ./.github/actions/${{ env.name }}
-				with:
-					url: 'https://github.com/a/b'
-			- run: |
-				test "${{ steps.a.outputs.url }}" = "${{ steps.a.outputs.scheme }}${{ steps.a.outputs.domain }}/${{ steps.a.outputs.repo }}"
-				test "${{ steps.a.outputs.url }}" = 'https://github.com/a/b'
-				test "${{ steps.a.outputs.repo }}" = 'a/b'
+    - id: a
+      uses: ./.github/actions/${{ env.name }}
+      with:
+        url: 'https://github.com/a/b'
+    - run: |
+      test "${{ steps.a.outputs.url }}" = "${{ steps.a.outputs.scheme }}${{ steps.a.outputs.domain }}/${{ steps.a.outputs.repo }}"
+      test "${{ steps.a.outputs.url }}" = 'https://github.com/a/b'
+      test "${{ steps.a.outputs.repo }}" = 'a/b'
