@@ -8,10 +8,10 @@ on:
   push:
     branches:
       - main
-  paths:
-    - '**repo-parse**'
-    - '**lib.sh'
-    - '**lib.bash'
+    paths:
+      - '**repo-parse**'
+      - '**lib.sh'
+      - '**lib.bash'
 
 jobs:
   test:
