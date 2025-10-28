@@ -12,8 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        url: ['https://github.com/a/b', \
-              'https://gitlab.com/a/b', \
+        url: ['https://github.com/a/b',
+              'https://gitlab.com/a/b',
               'http://gitlab.com/a/b']
 #              - 'https://github.com/a/b#v18.0.1'
 #              - 'https://gitlab.com/a/b#v18.0.1'
