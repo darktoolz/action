@@ -26,7 +26,8 @@ if test "$c" = "1"; then
   repo="$url"
 else
   echo "$url" | sed 's/^\w*\:\/\///' | sed 's/\//\t/' | sed -E 's/([\#\@])([^\#\@]*)$/\t\2\t\1/' | read domain repo tag delim
-  url="$scheme://$domain/$repo$delim$tag"
 fi
+
+url="$scheme://$domain/$repo$delim$tag"
 
 output scheme domain repo url tag
