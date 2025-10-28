@@ -25,5 +25,4 @@ runs:
     - name: Parse repository URL
       shell: bash
       id: repo
-      run: ./run.sh "${{ inputs.url }}"
-#      run: ${{github.action_path}}/action.sh "${{ inputs.url }}"
+      run: ${{github.action_path}}/action.sh "${{ inputs.url }}"
