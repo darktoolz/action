@@ -9,10 +9,9 @@ on:
     branches:
       - main
   paths:
-    - '.github/actions/repo-parse/*'
-    - '.github/workflows/test-repo-parse.yml'
-    - '.github/actions/lib.sh'
-    - 'lib.bash'
+    - '**repo-parse**'
+    - '**lib.sh'
+    - '**lib.bash'
 
 jobs:
   test:
