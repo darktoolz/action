@@ -24,5 +24,10 @@ To add standard actions operating with `.msi`, `luarocks`, `.py` and other modul
 MSI actions:
 - `msi-create`: create `.msi`
 
+## lib.sh
+Using few helper Bash libs to implement Github Actions (composite).
+- `lib.sh` 
+- `curl.sh`
+
 ## testing
 Action test is located in `.github/workflows/test-*.yml` and runs on source updates.

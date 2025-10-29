@@ -3,6 +3,19 @@ inputs:
   url:
     description: Repository url
     required: false
+  repo:
+    description: Repository (owner/name)
+    required: false
+  domain:
+    description: Repository service domain name
+    required: false
+  scheme:
+    description: Service scheme (http/https)
+    required: false
+  tag:
+    description: Repository tag
+    required: false
+
 outputs:
   url:
     description: Repository url (rebuilt from vars)
@@ -25,4 +38,9 @@ runs:
     - name: Parse repository URL
       shell: bash
       id: repo
-      run: ${{github.action_path}}/action.sh "${{ inputs.url }}"
+      env:
+        REPO: ${{ inputs.repo }}
+        DOMAIN: ${{ inputs.domain }}
+        SCHEME: ${{ inputs.scheme }}
+        TAG: ${{ inputs.tag }}
+      run: ${{github.action_path}}/action.sh "${{ inputs.url }}" >> $GITHUB_OUTPUT

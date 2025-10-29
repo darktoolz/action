@@ -5,7 +5,7 @@ on:
       - main
     paths:
       - '**repo-parse**'
-      - 'lib.bash'
+      - 'lib.sh'
 
 jobs:
   test-empty:

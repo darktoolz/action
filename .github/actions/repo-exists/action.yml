@@ -1,0 +1,43 @@
+name: Repository existance checker
+inputs:
+  url:
+    description: Repository url
+    required: false
+  repo:
+    description: Repository (owner/name)
+    required: false
+  domain:
+    description: Repository service domain name
+    required: false
+  scheme:
+    description: Service scheme (http/https)
+    required: false
+outputs:
+  exists:
+    description: Repository existence (boolean)
+    type: boolean
+    value: ${{ steps.check.outputs.exists }}
+runs:
+  using: composite
+  steps:
+    - name: Parse input arguments
+      id: repo
+      uses: ./.github/actions/repo-parse
+      with:
+        url: ${{ inputs.url }}
+        repo: ${{ inputs.repo }}
+        domain: ${{ inputs.domain }}
+        scheme: ${{ inputs.scheme }}
+
+    - name: Validate successfull parsing
+      shell: bash
+      run: test -n "${{ steps.repo.outputs.domain }}" && test -n "${{ steps.repo.outputs.repo }}"
+
+    - name: Repository existance check
+      shell: bash
+      id: check
+      outputs:
+        exists:
+          description: Repository existence check result
+          type: boolean
+      run: ${{github.action_path}}/action.sh "${{ steps.repo.outputs.repo }}" "${{ steps.repo.outputs.domain }}" "${{ steps.repo.outputs.scheme }}" >> $GITHUB_OUTPUT
