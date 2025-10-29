@@ -6,6 +6,8 @@ on:
     paths:
       - '**repo-parse**'
       - 'lib.sh'
+    paths-ignore:
+      - '**.md'
 
 jobs:
   test-empty:

@@ -1,0 +1,41 @@
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '**repo-exists**'
+      - 'lib.sh'
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  test-failed:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        url: ['https://gitlab.com/a/invalid',
+              'http://github.com/actions/noneexistent',
+              'https://github.com/actions/noneexistent']
+    steps:
+      - uses: actions/checkout@v4
+      - id: failed
+        uses: ./.github/actions/repo-exists
+        with:
+          url: ${{ matrix.url }}
+      - run: test "${{ steps.failed.outputs.exists }}" = 'false'
+
+  test-good:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        url: ['https://gitlab.com/gitlab-org/gitlab-runner',
+              'https://github.com/darktoolz/action', 'darktoolz/action',
+              'https://github.com/actions/checkout', '']
+    steps:
+      - uses: actions/checkout@v4
+      - id: good
+        uses: ./.github/actions/repo-exists
+        with:
+          url: ${{ matrix.url }}
+      - run: test "${{ steps.good.outputs.exists }}" = 'true'
