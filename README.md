@@ -3,8 +3,8 @@ Actions accept git repositories located on both Gitlab and Github services.
 Every action could fetch info using both APIs / links / protocols.
 
 Repository actions:
-- `repo-parse`: repo url to scheme+domain+repo+tag
-- `repo-exists`: check repo existance
+- [repo-parse](.github/actions/repo-parse/README.md): accept, parse and normalize repo address from `URL`, `repo name`, `domain`, `tag` and `scheme`
+- [repo-exists](.github/actions/repo-exists/README.md): check repo existance
 - `repo-info`: get repo info
 
 Tag actions:
@@ -19,16 +19,16 @@ Release actions:
 - `release-push`: push release
 - `release-info`: get release info
 
-## specific actions
+### specific actions
 To add standard actions operating with `.msi`, `luarocks`, `.py` and other modules.
 
 MSI actions:
 - `msi-create`: create `.msi`
 
-## lib.sh
+### lib.sh
 Using few helper Bash libs to implement Github Actions (composite).
 - `lib.sh` 
 - `curl.sh`
 
-## testing
+### testing
 Action test is located in `.github/workflows/test-*.yml` and runs on source updates.
