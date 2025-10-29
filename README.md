@@ -1,5 +1,6 @@
 # common github actions
-Common github actions. Try to be compatible both with `Github` and `Gitlab`.
+Actions accept git repositories located on both Gitlab and Github services.
+Every action could fetch info using both APIs / links / protocols.
 
 Repository actions:
 - `repo-parse`: repo url to scheme+domain+repo+tag
