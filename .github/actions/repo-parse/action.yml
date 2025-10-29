@@ -38,6 +38,17 @@ runs:
     - name: Parse repository URL
       shell: bash
       id: repo
+      outputs:
+        url:
+          description: Repository url (rebuilt from vars)
+        repo:
+          description: Repository name
+        domain:
+          description: Repository service domain name
+        scheme:
+          description: Service scheme (http/https)
+        tag:
+          description: Repository tag
       env:
         REPO: ${{ inputs.repo }}
         DOMAIN: ${{ inputs.domain }}

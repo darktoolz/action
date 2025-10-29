@@ -60,7 +60,7 @@ test -n "$repo" || die "invalid argument: empty repository"
 
 # could be optional argument + url
 test -z "$tag" || tag="$TAG"
-test -z "$tag" -o -n "$delim" || delim='@'
+test -z "$tag" -o -n "$delim" || delim='#'
 
 url="$scheme://$domain/$repo$delim$tag"
 
