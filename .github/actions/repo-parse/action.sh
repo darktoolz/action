@@ -47,6 +47,7 @@ else
   else
     # have full url here
     echo "$url" | sed 's/^\w*\:\/\///' | sed 's/\//\t/' | sed -E 's/([\#\@])([^\#\@]*)$/\t\2\t\1/' | read domain repo tag delim
+    dump scheme domain repo url tag 1>&1
 
     # check for conflicts with different DOMAIN, REPO, TAG
     test "$domain" = "$DOMAIN" -o -z "$DOMAIN" || die "domain argument conflict: '$domain' != '$DOMAIN'"
@@ -59,7 +60,8 @@ fi
 test -n "$repo" || die "invalid argument: empty repository"
 
 # could be optional argument + url
-test -z "$tag" || tag="$TAG"
+#test -n "$tag" -a -z "$TAG"
+test -z "$tag" -a -z  || tag="$TAG"
 test -z "$tag" -o -n "$delim" || delim='#'
 
 url="$scheme://$domain/$repo$delim$tag"
